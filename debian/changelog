@@ -1,0 +1,5 @@
+ruby-rbvmomi (1.8.2-1) UNRELEASED; urgency=medium
+
+  * Initial release (Closes: #719779)
+
+ -- Balasankar C <balasankarc@autistici.org>  Wed, 30 Dec 2015 23:09:39 +0530
