@@ -5,11 +5,14 @@ Maintainer: Debian Ruby Extras Maintainers <pkg-ruby-extras-maintainers@lists.al
 Uploaders: Balasankar C <balasankarc@autistici.org>
 Build-Depends: debhelper (>= 9~),
                gem2deb,
-               rake
+               rake,
+               ruby-builder,
+               ruby-nokogiri,
+               ruby-trollop
 Standards-Version: 3.9.6
 Vcs-Git: git://anonscm.debian.org/pkg-ruby-extras/ruby-rbvmomi.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-ruby-extras/ruby-rbvmomi.git
-Homepage: FIXME
+Homepage: https://github.com/vmware/rbvmomi
 Testsuite: autopkgtest-pkg-ruby
 XS-Ruby-Versions: all
 
@@ -17,7 +20,12 @@ Package: ruby-rbvmomi
 Architecture: all
 XB-Ruby-Versions: ${ruby:Versions}
 Depends: ruby | ruby-interpreter,
+         ruby-builder,
+         ruby-nokogiri,
+         ruby-trollop,
          ${misc:Depends},
          ${shlibs:Depends}
-Description: FIXME
- <insert long description, indented with spaces>
+Description: Ruby interface to the VMware vSphere API
+ This package provides the gem, RbVmomi, which is a Ruby interface to the
+ vSphere API. Like the Perl and Java SDKs, it can be used to manage ESX and
+ VirtualCenter servers.
