@@ -1,0 +1,58 @@
+Description: Use system installation path instead of source path
+Author: Balasankar C <balasankarc@autistici.org>
+Last-Update: 2015-12-30
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/lib/rbvmomi/pbm.rb
++++ b/lib/rbvmomi/pbm.rb
+@@ -60,7 +60,14 @@
+   end
+ 
+   add_extension_dir File.join(File.dirname(__FILE__), "pbm")
+-  load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++
++  if File.exist?("/usr/share/ruby-rbvmomi/vmodl.db")
++      load_vmodl(ENV['VMODL'] || "/usr/share/ruby-rbvmomi/vmodl.db")
++  elsif File.exist?(File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++  else
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++  end
+ end
+ 
+ end
+--- a/lib/rbvmomi/sms.rb
++++ b/lib/rbvmomi/sms.rb
+@@ -54,7 +54,14 @@
+   end
+ 
+   add_extension_dir File.join(File.dirname(__FILE__), "sms")
+-  load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++
++  if File.exist?("/usr/share/ruby-rbvmomi/vmodl.db")
++      load_vmodl(ENV['VMODL'] || "/usr/share/ruby-rbvmomi/vmodl.db")
++  elsif File.exist?(File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++  else
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++  end
+ end
+ 
+ end
+--- a/lib/rbvmomi/vim.rb
++++ b/lib/rbvmomi/vim.rb
+@@ -122,7 +122,13 @@
+   add_extension_dir File.join(File.dirname(__FILE__), "vim")
+   (ENV['RBVMOMI_VIM_EXTENSION_PATH']||'').split(':').each { |dir| add_extension_dir dir }
+ 
+-  load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++  if File.exist?("/usr/share/ruby-rbvmomi/vmodl.db")
++      load_vmodl(ENV['VMODL'] || "/usr/share/ruby-rbvmomi/vmodl.db")
++  elsif File.exist?(File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../../../share/ruby-rbvmomi/vmodl.db"))
++  else
++      load_vmodl(ENV['VMODL'] || File.join(File.dirname(__FILE__), "../../vmodl.db"))
++  end
+ end
+ 
+ end
